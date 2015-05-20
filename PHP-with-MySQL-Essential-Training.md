@@ -617,21 +617,18 @@ Outputting the value to determine what's going on
 - get_defined _vars();
 - debug_backtrace(); (also called a stacktrace)
 
+
 `
 $number = 99;
 $string = "Bug?";
 $array = array(1 => "Homepage", 2 => "About Us", 3 => "Services");
-
 var_dump($number);
 var_dump($string);
 var_dump($array);
-`
-`
 function say_hello_to($word) {
 echo "Hello {$word}!<br />";
 var_dump(debug_backtrace());
 }
-
 say_hello_to('Everyone');
 `
 
