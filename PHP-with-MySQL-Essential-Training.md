@@ -41,7 +41,7 @@ Use the command line to reset mysql default root password. Navigate to mysql/bin
 Setup first page, index.php
 Echo dynamic text
 The operational trail
-Inserting comments `// or /*  */`
+Inserting comments `// or /* */`
 
 
 ##Exploring Data Types##
@@ -83,7 +83,7 @@ Some functions:
 ####Numbers: Integers and Floating Points####
 
 - Absolute value: `abs(0 - 300);`
-- Exponential:  pow(2,8); 
+- Exponential: pow(2,8); 
 - Square root: sqrt(100); 
 - Modulo: fmod(20,7); 
 - Random: rand(); 
@@ -118,11 +118,11 @@ echo $mixed[2];
 echo $mixed[3]; 
 echo $mixed 
 
- $mixed[3][1]; 
+$mixed[3][1]; 
 
- $mixed[2] = "cat"; 
- $mixed[4] = "mouse"; 
- $mixed[] = "horse";  Will append to the end of the array
+$mixed[2] = "cat"; 
+$mixed[4] = "mouse"; 
+$mixed[] = "horse"; Will append to the end of the array
 
 Associated arrays always have key-value pairs:
 
@@ -280,7 +280,7 @@ echo "Result: {$result}";`
 
 - equal: ==
 - identical: === (equal AND same type)
-- compare  < > <= >=
+- compare < > <= >=
 - not equal !==
 - not identical: !===
 - and: &&
@@ -369,7 +369,7 @@ break;
 ####While Loops####
 
 `while (test){
-    statement
+statement
 }`
 
 `$count = 0;
@@ -381,11 +381,11 @@ $count++;
 ####For Loops####
 
 `for (initial; test; each){
-    statement
+statement
 }`
 
 `for($count = 0; $count <= 10; $count++) {
-    echo $count . ", ";
+echo $count . ", ";
 }`
 
 ####Foreach Loops####
@@ -393,51 +393,51 @@ $count++;
 Taylor made for arrays!
 
 `for ($array as $value){
-    statement
+statement
 }`
 $value is assigned to the item in the array. It does not have a value outside the loop.
 The condition for exiting is that the array ends. 
 
 `$ages = array(4,8,15,16,23,42);
 foreach($ages as $age) {
-    echo "Age: {$age}<br />";
+echo "Age: {$age}<br />";
 }`
 
 for associative arrays:
 `for ($array as $key => $value){
-    statement
+statement
 }`
 
 `$person = array(
-    "first_name" => "Kevin", 
-    "last_name" => "Skoglund",
-    "address" => "123 Main Street",
-    "city" => "Beverly Hills",
-    "state" => "CA",
-    "zip_code" => "90210"
-  );`
+"first_name" => "Kevin", 
+"last_name" => "Skoglund",
+"address" => "123 Main Street",
+"city" => "Beverly Hills",
+"state" => "CA",
+"zip_code" => "90210"
+);`
 
 `foreach($person as $attribute => $data) {
-    $attr_nice = ucwords(str_replace("_", " ", $attribute));
-    echo "{$attr_nice}: {$data}<br />";
+$attr_nice = ucwords(str_replace("_", " ", $attribute));
+echo "{$attr_nice}: {$data}<br />";
 }`
 
 
 ####Continue####
 
 `for ($count=0; $count <= 10; $count++) {
-    if ($count % 2 == 0) { continue; }
-    echo $count . ", ";
+if ($count % 2 == 0) { continue; }
+echo $count . ", ";
 }`
 
 Once you get to the `continue`, then it starts the loop over again.
 
 `for ($i=0; $i<=5; $i++) {
-     if ($i % 2 == 0) { continue(1); }
-        for ($k=0; $k<=5; $k++) {
-            if ($k == 3) { continue(2); }
-                echo $i . "-" . $k . "<br />";
-        }
+if ($i % 2 == 0) { continue(1); }
+for ($k=0; $k<=5; $k++) {
+if ($k == 3) { continue(2); }
+echo $i . "-" . $k . "<br />";
+}
 }`
 
 The "2" in the loop above, it tells it to go back "2" arrays.
@@ -447,10 +447,10 @@ The "2" in the loop above, it tells it to go back "2" arrays.
 Break stops the whole process and moves on.
 
 `for ($count=0; $count <= 10; $count++) {
-    if ($count == 5) {
-    break;
-    }
-    echo $count . ", ";
+if ($count == 5) {
+break;
+}
+echo $count . ", ";
 }`
 
 ####Array Pointers####
@@ -483,11 +483,11 @@ echo "7: " . current($ages) . "<br />";
 
 
 `reset($ages);
-    // while loop that moves the array pointer
-    // similar to foreach
-    while($age = current($ages)) {
-    echo $age . ", ";
-    next($ages);
+// while loop that moves the array pointer
+// similar to foreach
+while($age = current($ages)) {
+echo $age . ", ";
+next($ages);
 }`
 
 
@@ -499,7 +499,7 @@ echo "7: " . current($ages) . "<br />";
 
 Define:
 `function name($arg1, $arg2) {
-    statement
+statement
 }`
 
 
@@ -617,7 +617,6 @@ Outputting the value to determine what's going on
 - get_defined _vars();
 - debug_backtrace(); (also called a stacktrace)
 
-
 `
 $number = 99;
 $string = "Bug?";
@@ -636,8 +635,207 @@ say_hello_to('Everyone');
 
 
 
+##Building Web Pages with PHP##
+
+####Links and URLs####
+
+Basic ways to get information:
+
+- URLs/Links => GET (contain query parameter, anthing after the ?, multiple use the &
+- Forms => POST
+- Cookies => COOKIE
+
+Super Global Parameter: 
+- $_GET : still a variable, 
+
+####Encoding GET Values####
+
+Reserved characters need to be encoded, e.g. !#$%&'()*/;:=?@[]
+Convert to hexadecimal form:
+
+- `urlencode()`: reserved characters become % + 2-digit hexidecimal, spaces become "+"
+Raw URL Encoding: 
+- `rawurlencode()` : reserved characters become % + 2-digit hexidecimal, spaces become "%20"
+
+When to use raw or urlencode? 
+
+- rawurlencode: on the path
+-- Path is the part before the "?"
+-- Spaces must be encoded as %20
+- urlencode the query string
+-- Query string is the part after the "?"
+-- Spaces are better encoded as "+"
+
+- rawurlcode is more compatible generally
+
+####Encoding for HTML####
+
+Eg, HTML tags:
+
+Reserved characters in HTML: <>&"
+
+- use `htmlspecialchars()` to transform them.
+- use `htmlentities()` to transform special things like TM, (R), etc.
+
+// What to use when
+`
+$url_page = "php/created/page/url.php";
+$param1 = "This is a string with < >";
+$param2 = "&#?*$[]+ are bad characters";
+$linktext = "<Click> & learn more";
+`
+`
+$url = "http://localhost/";
+$url .= rawurlencode($url_page);
+$url .= "?" . "param1=" . urlencode($param1);
+$url .= "&" . "param2=" . urlencode($param2);
+`
+
+####Including and Requiring Files####
+
+Using `include()`
+
+- Funtions
+- Layout sections (header, footer, ect.)
+- Resuable HTML/PHP code
+- CSS or Javascript
+
+- `include()`
+- `require()` : will cause an error
+- `include_once()` : helps to not redefine variables
+- `require_once()` : 
+
+####Modifying Headers####
+
+- Headers are sent before page
+- Changes must be made before any HTML output
+-- before a single spaces or line return
+-- before whitespace in included files
+-- can come after whitespace inside php tags
+
+####Page Redirection####
+
+- 302 Redirect
+-- HTTP 1.1/302 Found
+-- location: path
+- `header("Location: login.php");`
+
+Here's a good function to use for redirection:
+`
+function redirect_to($new_location) {
+header("Location: " . $new_location);
+exit;
+`
+can be used with:
+`
+$logged_in = $_GET['logged_in'];
+if ($logged_in == "1") {
+redirect_to("basic.html");
+} else {
+redirect_to("http://www.lynda.com");
+}
+`
+
+####Output Buffering####
+
+- `ob_start()`
+- `ob_end_flush()` : you have to end this so it will flush out everything.
+
+Or set up in the php.ini file. If you're doing this sitewide, make sure to use `include()` so that you don't forget it on any page.
 
 
+##Working with Forms and Form Data##
+All forms are going to use the $_POST function
+
+$_POST data doesn't need to be encoded.
+
+####Single-Page Form Processing####
+
+- All logic is in one file
+- Redisplay the form on errors
+-- Return error messages
+-- Populate fields
+
+
+####Common Validations####
+
+- Presence
+- String length
+- Type
+- Inclusion in a set
+- Uniqueness
+- Format
+
+####Using Custom Validation Functions####
+
+create a php file with validations functions and include that in the necessary pages.
+
+`
+// * presence
+function has_presence($value) {
+return isset($value) && $value !== "";
+}
+// * string length
+// max length
+function has_max_length($value, $max) {
+return strlen($value) <= $max;
+}
+// * inclusion in a set
+function has_inclusion_in($value, $set) {
+return in_array($value, $set);
+}
+`
+
+
+##Working with Cookies and Sessions##
+
+$_COOKIE
+Cookies are set in the header, and they can only be active when the headers are being sent or received. 
+
+`setcookie($name, $value, $expire);`
+`
+$name = "test";
+$value = "hello";
+$expire = time() + (60*60*24*7); // add seconds
+setcookie($name, $value, $expire);
+`
+
+####Unset Cookies####
+
+The wrong way:
+
+`- unset($_COOKIE["user_id"]);`
+
+The right ways:
+
+- `setcookie($name);`
+- `setcookie($name, null);`
+- `setcookie($name, $value, time() - 3600 );`
+
+
+####Working With Sessions####
+
+Pros and Cons with Sessions. 
+
+use: `session_start();` , this should go in the header, since it deals with cookies.
+`
+$_SESSION["first_name"] = "Kevin";
+$name = $_SESSION["first_name"];
+echo $name;
+`
+
+
+
+##MySQL Basics##
+
+- Databases have one database per application
+- Table: set of column and rows, relationships between 
+- Columns: type types
+- Rows: single record of data 
+- Field: intersection of row and column
+- Index: increase lookup speed.
+- Foreign keys: creating relationship table
+- CRUD: Create, Read, Update, Delete. 
 
 
 
