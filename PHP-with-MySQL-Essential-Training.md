@@ -838,6 +838,80 @@ echo $name;
 - CRUD: Create, Read, Update, Delete. 
 
 
+Setting up a MySQL DB with Command Line:
+
+`
+-DROP DATABASE db_name;
+-CREATE DATABASE name_of_database;
+-SHOW DATABASES;-
+-USE name_of_database;
+-GRANT ALL PRIVILEGES ON db_name
+--TO 'widget_cms'@'localhost'
+--IDENTIFIED BY 'password';
+`
+####Creating Tables####
+
+`
+CREATE TABLE table_name (
+-- id INT(11) NOT NULL AUTO_INCREMENT,
+-- menu_name VARCHAR(30) NOT NULL,
+-- position INT(3) NOT NULL
+-- visible TINYINT(1) NOT NULL,
+-- PRIMARY KEY (id)
+-- );
+`
+
+SHOW COLUMNS FROM table_name;
+Always add a column for:
+-id
+
+####CRUD####
+
+SELECT: Read
+SQL INSERT: Create
+SQL UPDATE: update
+SQL DELETE: Delete
+
+
+
+
+
+##Using PHP to Access MySQL##
+
+
+
+##Building a Content Management System##
+
+
+
+
+##Using Site Navigation to Choose Content##
+
+
+
+##Application CRUD##
+
+
+
+
+
+##Building in Public Area##
+
+
+
+
+
+
+##Regulating Page Access##
+
+
+
+
+
+
+
+
+
 
 
 
