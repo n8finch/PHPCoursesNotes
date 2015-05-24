@@ -968,10 +968,16 @@ What types of data will there be?
 
 
 
-
-
-
 ##Using Site Navigation to Choose Content##
+
+####Adding Pages to the Navigation####
+
+Refactoring: changing the code structure or appearance without changing the functionality.
+For example:
+
+- Moving functions to the functions.php file
+- Taking out SQL functions from main php pages.
+
 
 
 
@@ -989,26 +995,3 @@ What types of data will there be?
 
 
 ##Regulating Page Access##
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
