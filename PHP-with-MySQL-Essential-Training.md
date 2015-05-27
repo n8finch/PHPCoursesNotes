@@ -1,3 +1,4 @@
+
 ##PHP Overview##
 ####What is PHP?####
 PHP is a server side scripting language.
@@ -872,6 +873,12 @@ SQL INSERT: Create
 SQL UPDATE: update
 SQL DELETE: Delete
 
+SQL Commands:
+
+- SHOW TABLES db_name;
+- SHOW COLUMNS FROM table_name; 
+- INSERT INTO table_name (column_name, column_name, column_name) (<-- these should be parameters)
+-- VALUES ('Insert a string here', 1, 1); (should add the values you want assigned to each of the parameters)
 
 
 
@@ -968,6 +975,9 @@ What types of data will there be?
 
 
 
+
+
+
 ##Using Site Navigation to Choose Content##
 
 ####Adding Pages to the Navigation####
@@ -983,6 +993,20 @@ For example:
 
 ##Application CRUD##
 
+Always remember to guard against SQL injection with `mysql_real_escape_string($param, $param);` or something similar. For example, securing `$subject_id` to $safe_subject_id`. 
+
+In manage_content.php, it's best to make sure that you're just managing content and keep functions in funtions.php as you can.
+
+Sessions are most useful for:
+
+-User authentication
+--$logged_in, $user_id
+
+-Holding data during a redirect
+--$message, $errors
+
+-Frequently referred to data
+--$username, $account_type
 
 
 
@@ -995,3 +1019,4 @@ For example:
 
 
 ##Regulating Page Access##
+
