@@ -11,3 +11,5 @@ Any public projects are also linked to this TOC.
 - Web App developed
 - git repo [here](https://github.com/FinchPS/widgets_corps)
 - live app hosted here
+
+4. [Object-Oriented Programming with PHP](https://github.com/FinchPS/PHPCoursesNotes/blob/master/ObjectOrientedProgrammingwithPHP.md)
