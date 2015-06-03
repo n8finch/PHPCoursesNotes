@@ -145,20 +145,130 @@ e.g. `public $country_name;`
 
 ##Creating Overloading with Magic Methods##
 
+Magic methods are specialized methods built into PHP that execute in response to events. There are about a dozen available.
+
+They start with two underscores and then a string, e.g. `__construct() or __toString()`. 
+
+Trigger custom behavior, access unavailable property, missing methods. Custom object creation allows for defaults to be set which are normally unavailable at run time. Like 
+
+Can slow down and expose variables that are otherwise hidden.
+
+Treating objects like strings: Convenient to assume. Polymorphism: allows you to act on an object without knowing the class, common function names between classes. 
+
 
 
 ##Accessing Classes without Instantiation##
+
+Why limit instantiation? DB connections, third-party services (slow performance), alternative to global (declaring a class), only one instance in an application.
+
+Static keywords: Access property, method without instantiation. Static properties have values stored at class, not object level, keep track of number of instantiated objects.
+
+`Static public $variable = ... `
+
+`static public $valid_address_types = array(
+1 => 'Residence',
+2 => 'Business',
+3 => 'Park',
+);`
+
+Scope Resolution Operator allows access to: static, constant, overridden properties & methods without instantiation.
+
+`::`
+`Class::method()`
+`Class::$variable`
+
+Constants: like a property that never changes. Should all be in all caps, with const at the beginning. e.g. `const JENNY = "867-5309";` Can't be arrays. 
+
+Static Methods, similar to regular methods in naming convention, visibility scope, returns value. 
+Cannot use `$this` to get properties. Instead, use `$self` keyword which refers to the current class. 
+
+Database Class: allow only one connection, provide access throughout the application, minimize corruption, using MySQLi
+
+/**
+* MySQLi database; only one connection is allowed. 
+*/
+class Database {
+private $_connection;
+// Store the single instance.
+private static $_instance;
+
+/**
+* Get an instance of the Database.
+* @return Database 
+*/
+public static function getInstance() {
+if (!self::$_instance) {
+self::$_instance = new self();
+}
+return self::$_instance;
+}
+
+/**
+* Constructor.
+*/
+public function __construct() {
+$this->_connection = new mysqli('localhost', 'sandbox', 'sandbox', 'sandbox');
+// Error handling.
+if (mysqli_connect_error()) {
+trigger_error('Failed to connect to MySQL: ' . mysqli_connect_error(), E_USER_ERROR);
+}
+}
+
+/**
+* Empty clone magic method to prevent duplication. 
+*/
+private function __clone() {}
+
+/**
+* Get the mysqli connection. 
+*/
+public function getConnection() {
+return $this->_connection;
+}
+}
 
 
 
 ##Class Relationships and Interactions##
 
+Autoload Functions: automatically called `__autoload()`
+`function __autoload($class_name) {
+include 'class.' . $class_name . '.inc';
+}`
+
+Restict access with abstract class.
+
+Use `final` to make sure child classes don't reload declarations. 
+
+Overriding
+
+Referencing is an alias, variables do not contain the object, but only the internal object identifier.
+
 
 
 ##Built in PHP Objects##
 
+Exception Handling: a problem without crashing. `try` can be used, but `throw` might be better, e.g. `throw new exception...`
+
+If using `try`, follow with `catch (Exception $e)`, you can also define error codes like 404, 1000, etc., otherwise, they are only throwing errors that are intergers, 0, 1, 2, etc...
+
+
 
 
 ##Design Patterns##
+
+- Singleton Pattern
+- Factory Method Pattern
+- Strategy Pattern
+
+
+##Conclusion##
+
+- Namespace on php.net
+- Books:
+-- Design Patterns: Elements of Reusable OO Software
+-- Code Complete (2nd ed. , MS Press)
+
+
 
 
